@@ -13,9 +13,10 @@ class DiaryKey:
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         padData = pad(data.encode('utf-8'), AES.block_size)
         return iv + cipher.encrypt(padData)
-    
+
     def decode(self, data):
         iv = data[:AES.block_size]
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         decrypt = cipher.decrypt(data[AES.block_size:])
         return unpad(decrypt, AES.block_size).decode('utf-8')
+    
