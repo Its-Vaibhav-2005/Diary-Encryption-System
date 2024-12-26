@@ -19,10 +19,3 @@ class DiaryKey:
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
         decrypt = cipher.decrypt(data[AES.block_size:])
         return unpad(decrypt, AES.block_size).decode('utf-8')
-    
-diary = DiaryKey("--My-Secret-Key--")
-encoded = diary.encode("Hello World")
-decoded = diary.decode(encoded)
-
-ic(f"Encoded: {encoded}")
-ic(f"Decoded: {decoded}")
